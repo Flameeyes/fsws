@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+	 ns="http://www.flameeyes.eu/fsws/2009"
+	 datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="staticsite">
+
+      <oneOrMore>
+	<element name="language">
+	  <text />
+	</element>
+      </oneOrMore>
+
+      <element name="metadata">
+	<interleave>
+	  <element name="baseurl">
+	    <data type="anyURI" />
+	  </element>
+
+	  <oneOrMore>
+	    <element name="title">
+	      <ref name="xml" />
+	      <text />
+	    </element>
+	  </oneOrMore>
+
+	  <oneOrMore>
+	    <element name="author">
+	      <ref name="xml" />
+	      <text />
+	    </element>
+	  </oneOrMore>
+
+	  <element name="copyright">
+	    <attribute name="start">
+	      <data type="integer" />
+	    </attribute>
+	    <text />
+	  </element>
+
+	  <zeroOrMore>
+	    <element name="keywords">
+	      <ref name="xml" />
+	      <text />
+	    </element>
+	  </zeroOrMore>
+
+	  <zeroOrMore>
+	    <element name="stylesheet">
+	      <attribute name="href">
+		<data type="anyURI" />
+	      </attribute>
+	      <optional>
+		<attribute name="media" />
+	      </optional>
+	    </element>
+	  </zeroOrMore>
+
+	  <optional>
+	    <element name="geolocation">
+	      <attribute name="latitude">
+		<data type="decimal" />
+	      </attribute>
+
+	      <attribute name="longitude">
+		<data type="decimal" />
+	      </attribute>
+	    </element>
+	  </optional>
+
+	  <element name="sidebar">
+	    <interleave>
+	      <zeroOrMore>
+		<element name="staticbox">
+		  <ref name="xml" />
+		  <attribute name="title">
+		    <text />
+		  </attribute>
+
+		  <ref name="enhancedHTML" />
+		</element>
+	      </zeroOrMore>
+
+	      <zeroOrMore>
+		<element name="indexbox">
+		  <attribute name="category">
+		    <text /> <!-- this should get validated :( -->
+		  </attribute>
+		</element>
+	      </zeroOrMore>
+
+	      <zeroOrMore>
+		<element name="flickrbox">
+		  <attribute name="title" />
+		  <attribute name="set" />
+		</element>
+	      </zeroOrMore>
+	    </interleave>
+	  </element>
+	</interleave>
+      </element>
+
+      <oneOrMore>
+	<ref name="category" />
+      </oneOrMore>
+
+      <zeroOrMore>
+	<element name="notfound">
+	  <attribute name="google">
+	    <data type="boolean" />
+	  </attribute>
+	  <ref name="xml" />
+	  <oneOrMore>
+	    <ref name="enhancedHTML" />
+	  </oneOrMore>
+	</element>
+      </zeroOrMore>
+
+      <optional>
+	<element name="robots">
+	  <oneOrMore>
+	    <element name="disallow">
+	      <data type="anyURI" />
+	    </element>
+	  </oneOrMore>
+	</element>
+      </optional>
+    </element>
+  </start>
+
+  <define name="xml">
+    <optional>
+      <attribute name="xml:lang">
+	<!-- this should be validated against the list of fsws:languages :( -->
+	<text />
+      </attribute>
+    </optional>
+
+    <optional>
+      <attribute name="xml:base">
+	<text />
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="xmlID">
+    <attribute name="xml:id">
+      <data type="ID" />
+    </attribute>
+  </define>
+
+  <define name="category">
+    <choice>
+      <!-- real category content -->
+      <element name="category">
+	<attribute name="name">
+	  <text />
+	</attribute>
+
+	<ref name="xml" />
+	<ref name="xmlID" />
+
+	<optional>
+	  <attribute name="output_directory">
+	    <data type="anyURI" />
+	  </attribute>
+	</optional>
+
+	<oneOrMore>
+	  <ref name="page" />
+	</oneOrMore>
+      </element>
+
+      <!-- Category-class external link -->
+      <element name="category">
+	<optional>
+	  <attribute name="text" />
+	</optional>
+	<attribute name="title" ns="http://www.w3.org/1999/xlink" />
+	<attribute name="href" ns="http://www.w3.org/1999/xlink" />
+      </element>
+
+      <ref name="page" />
+    </choice>
+  </define>
+
+  <define name="title">
+    <element name="title">
+      <ref name="xml" />
+      <text />
+    </element>
+  </define>
+
+  <define name="page">
+    <choice>
+      <element name="page">
+	<ref name="xmlID" />
+
+	<ref name="xml" />
+
+	<optional>
+	  <attribute name="follow">
+	    <data type="boolean" />
+	  </attribute>
+	</optional>
+
+	<choice>
+	  <group>
+	    <interleave>
+	      <oneOrMore>
+		<ref name="title" />
+	      </oneOrMore>
+	      <oneOrMore>
+		<ref name="section" />
+	      </oneOrMore>
+	    </interleave>
+	  </group>
+
+	  <group>
+	    <interleave>
+	      <zeroOrMore>
+		<ref name="title" />
+	      </zeroOrMore>
+
+	      <oneOrMore>
+		<element name="content">
+		  <ref name="xml" />
+		  <interleave>
+		    <zeroOrMore>
+		      <ref name="title" />
+		    </zeroOrMore>
+		    <oneOrMore>
+		      <ref name="section" />
+		    </oneOrMore>
+		  </interleave>
+		</element>
+	      </oneOrMore>
+	    </interleave>
+	  </group>
+	</choice>
+
+	<optional>
+	  <element name="subpages">
+	    <oneOrMore>
+	      <element name="subcategory">
+		<optional>
+		  <attribute name="title" />
+		</optional>
+		<oneOrMore>
+		  <ref name="page" />
+		</oneOrMore>
+	      </element>
+	    </oneOrMore>
+	  </element>
+	</optional>
+      </element>
+
+      <element name="link">
+	<attribute name="title" />
+	<attribute name="href">
+	  <data type="anyURI" />
+	</attribute>
+      </element>
+
+      <!-- Flickr gallery page -->
+      <element name="flickr_gallery">
+	<attribute name="set" />
+	<attribute name="prefixid" />
+      </element>
+    </choice>
+  </define>
+
+  <define name="section">
+    <choice>
+      <element name="section">
+	<ref name="xml" />
+	<optional>
+	  <ref name="xmlID" />
+	</optional>
+
+	<optional>
+	  <attribute name="title" />
+	</optional>
+
+	<optional>
+	  <attribute name="date" />
+	</optional>
+
+	<zeroOrMore>
+	  <element name="title">
+	    <ref name="xml" />
+	    <text />
+	  </element>
+	</zeroOrMore>
+
+	<oneOrMore>
+	  <ref name="enhancedHTML" />
+	</oneOrMore>
+      </element>
+      <element name="project" ns="http://www.flameeyes.eu/flamesite">
+	<oneOrMore>
+	  <choice>
+	    <attribute>
+	      <anyName />
+	    </attribute>
+	    <ref name="anyElement" />
+	  </choice>
+	</oneOrMore>
+      </element>
+    </choice>
+  </define>
+
+  <define name="enhancedHTML">
+    <choice>
+      <element>
+	<choice>
+	  <nsName ns="http://www.w3.org/1999/xhtml" />
+	  <nsName ns="http://www.flameeyes.eu/flamesite" />
+	</choice>
+	<zeroOrMore>
+	  <choice>
+	    <attribute>
+	      <anyName/>
+	    </attribute>
+	    <text/>
+	    <ref name="enhancedHTML"/>
+	  </choice>
+	</zeroOrMore>
+      </element>
+
+      <element name="linkto">
+	<attribute name="linkend">
+	  <data type="IDREF" />
+	</attribute>
+	<text />
+      </element>
+
+      <element name="youtube">
+	<attribute name="src" />
+	<attribute name="size">
+	  <choice>
+	    <value>wide</value>
+	  </choice>
+	</attribute>
+      </element>
+
+      <!-- FLICKR elements -->
+      <element name="flickr_photo">
+	<attribute name="id" />
+
+	<attribute name="size">
+	  <choice>
+	    <value>Small</value>
+	    <value>Medium</value>
+	    <value>Large</value>
+	  </choice>
+	</attribute>
+
+	<optional>
+	  <attribute name="customsize">
+	    <data type="boolean" />
+	  </attribute>
+	</optional>
+
+	<optional>
+	  <attribute name="set" />
+	</optional>
+      </element>
+
+      <element name="flickr_set_link">
+	<attribute name="id" />
+      </element>
+    </choice>
+  </define>
+
+  <define name="anyElement">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+	<choice>
+	  <attribute>
+	    <anyName/>
+	  </attribute>
+	  <text/>
+	  <ref name="anyElement"/>
+	</choice>
+      </zeroOrMore>
+    </element>    
+  </define>
+
+
+</grammar>
