@@ -141,9 +141,8 @@
 	select="exslt:node-set($fsws.flickr.info)/rsp/photo" />
   </xsl:template>
 
-  <xsl:template name="fsws.flickr.photo.sizedata">
+  <xsl:template name="fsws.flickr.photo.sizes">
     <xsl:param name="photo_id" />
-    <xsl:param name="size">Medium</xsl:param>
 
     <xsl:variable name="fsws.flickr.sizes">
       <xsl:call-template name="fsws.flickr.call.rest">
@@ -158,22 +157,7 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:copy-of
-	select="exslt:node-set($fsws.flickr.sizes)/rsp/sizes/size[@label = $size]" />
-  </xsl:template>
-
-  <xsl:template name="fsws.flickr.photo.url">
-    <xsl:param name="photo_id" />
-    <xsl:param name="size">Medium</xsl:param>
-
-    <xsl:variable name="fsws.flickr.sizedata">
-      <xsl:call-template name="fsws.flickr.photo.sizedata">
-	<xsl:with-param name="photo_id" select="$photo_id" />
-	<xsl:with-param name="size" select="$size" />
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:value-of select="exslt:node-set($fsws.flickr.sizedata)//@source" />
+    <xsl:copy-of select="exslt:node-set($fsws.flickr.sizes)/rsp/sizes" />
   </xsl:template>
 
   <xsl:template name="fsws.flickr.photo.img">
@@ -192,10 +176,9 @@
 
     <xsl:variable name="info" select="exslt:node-set($info_rtf)/*" />
 
-    <xsl:variable name="sizedata">
-      <xsl:call-template name="fsws.flickr.photo.sizedata">
+    <xsl:variable name="sizes">
+      <xsl:call-template name="fsws.flickr.photo.sizes">
 	<xsl:with-param name="photo_id" select="$info/@id" />
-	<xsl:with-param name="size" select="$size" />
       </xsl:call-template>
     </xsl:variable>
 
@@ -247,11 +230,11 @@
 	  </xsl:choose>
 	</xsl:attribute>
 	<xsl:attribute name="src">
-	  <xsl:value-of select="exslt:node-set($sizedata)//@source" />
+	  <xsl:value-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@source" />
 	</xsl:attribute>
 	<xsl:if test="$customsize != 'true'">
-	  <xsl:copy-of select="exslt:node-set($sizedata)//@width" />
-	  <xsl:copy-of select="exslt:node-set($sizedata)//@height" />
+	  <xsl:copy-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@width" />
+	  <xsl:copy-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@height" />
 	</xsl:if>
       </img>
     </a>
@@ -279,6 +262,8 @@
 
   <xsl:template name="fsws.flickr.set.photos">
     <xsl:param name="set" />
+    <xsl:param name="media">photos</xsl:param>
+    <xsl:param name="privacy_filter">1</xsl:param>
 
     <xsl:variable name="fsws.flickr.photos">
       <xsl:call-template name="fsws.flickr.call.rest">
@@ -287,15 +272,47 @@
 	</xsl:with-param>
 
 	<xsl:with-param name="extraparams">
-	  <xsl:text>media=photos&amp;</xsl:text>
-	  <xsl:text>photoset_id=</xsl:text>
+	  <!-- this is to avoid producing too big output;
+	       until we can use xslt 2.0 this has to stay :(
+	  -->
+	  <xsl:text>per_page=20&amp;page=1&amp;</xsl:text>
+
+	  <xsl:text>media=</xsl:text>
+	  <xsl:value-of select="$media" />
+	  <xsl:text>&amp;privacy_filter=</xsl:text>
+	  <xsl:value-of select="$privacy_filter" />
+	  <xsl:text>&amp;photoset_id=</xsl:text>
 	  <xsl:value-of select="$set" />
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
 
     <xsl:copy-of
-	select="exslt:node-set($fsws.flickr.info)/rsp/photoset" />
+	select="exslt:node-set($fsws.flickr.photos)/rsp/photoset" />
+  </xsl:template>
+
+  <xsl:template name="fsws.flickr.set.alldata">
+    <xsl:param name="set" />
+
+    <xsl:variable name="info">
+      <xsl:call-template name="fsws.flickr.set.info">
+	<xsl:with-param name="set" select="$set" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="photos">
+      <xsl:call-template name="fsws.flickr.set.photos">
+	<xsl:with-param name="set" select="$set" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <flickr-set>
+      <xsl:copy-of select="exslt:node-set($info)/photoset/@*" />
+      <xsl:copy-of select="exslt:node-set($photos)/photoset/@*" />
+
+      <xsl:copy-of select="exslt:node-set($info)/photoset/*" />
+      <xsl:copy-of select="exslt:node-set($photos)/photoset/*" />
+    </flickr-set>
   </xsl:template>
 
   <xsl:template name="fsws.flickr.set.imagelink">
@@ -368,6 +385,8 @@
     </xsl:for-each>
 
   </xsl:template>
+
+  <xsl:include href="flickr_gallery.xsl" />
 </xsl:stylesheet>
 <!--
    Local Variables:

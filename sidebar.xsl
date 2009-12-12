@@ -78,27 +78,26 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:sidebar/fsws:flickrbox">
-    <xsl:variable name="flickr_rest">
-      <xsl:call-template name="fsws.flickr.call.rest">
-	<xsl:with-param name="method">flickr.photosets.getPhotos</xsl:with-param>
-	<xsl:with-param name="extraparams">
-	  <xsl:text>media=photos&amp;privacy_filter=1&amp;</xsl:text>
-	  <xsl:text>photoset_id=</xsl:text><xsl:value-of select="@set" />
-	</xsl:with-param>
+    <xsl:variable name="setdata_rtf">
+      <xsl:call-template name="fsws.flickr.set.alldata">
+	<xsl:with-param name="set" select="@set" />
       </xsl:call-template>
     </xsl:variable>
+
+    <xsl:variable name="setdata"
+		  select="exslt:node-set($setdata_rtf)/*" />
 
     <div class="box">
       <div class="box_title">
 	<xsl:choose>
 	  <xsl:when test="@title"><xsl:value-of select="@title" /></xsl:when>
-	  <!-- No I haven't implemented getInfo yet -->
+	  <xsl:otherwise><xsl:value-of select="$setdata/title" /></xsl:otherwise>
 	</xsl:choose>
       </div>
 
       <div class="box_content">
 	<div class="thumbnails">
-	  <xsl:for-each select="exslt:node-set($flickr_rest)/rsp/photoset/photo">
+	  <xsl:for-each select="$setdata/photo">
 	    <xsl:call-template name="fsws.flickr.photo.img">
 	      <xsl:with-param name="photo" select="." />
 	      <xsl:with-param name="size">Square</xsl:with-param>
@@ -114,3 +113,11 @@
   </xsl:template>
 
 </xsl:stylesheet>
+<!--
+   Local Variables:
+   mode: nxml
+   mode: auto-fill
+   mode: flyspell
+   ispell-local-dictionary: "english"
+   End:
+-->

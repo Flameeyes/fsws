@@ -22,7 +22,16 @@
       </xsl:attribute>
     </xsl:if>
 
-    <h3><xsl:value-of select="fsws:title" /></h3>
+    <h3>
+      <xsl:choose>
+	<xsl:when test="fsws:title">
+	  <xsl:value-of select="fsws:title" />
+	</xsl:when>
+	<xsl:when test="@title">
+	  <xsl:value-of select="@title" />
+	</xsl:when>
+      </xsl:choose>
+    </h3>
   </div>
 
   <xsl:if test="@date">
