@@ -113,6 +113,8 @@
       <xsl:with-param name="size" select="@size" />
       <xsl:with-param name="set" select="@set" />
       <xsl:with-param name="customsize" select="@customsize" />
+      <xsl:with-param name="a_class" select="@a_class" />
+      <xsl:with-param name="img_class" select="@img_class" />
     </xsl:call-template>
   </xsl:template>
 
