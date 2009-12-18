@@ -191,9 +191,11 @@
     </xsl:variable>
 
     <a>
-      <xsl:attribute name="class">
-	<xsl:value-of select="$a_class" />
-      </xsl:attribute>
+      <xsl:if test="$a_class and $a_class != ''">
+	<xsl:attribute name="class">
+	  <xsl:value-of select="$a_class" />
+	</xsl:attribute>
+      </xsl:if>
       <xsl:attribute name="href">
 	<xsl:call-template name="fsws.flickr.photo.link">
 	  <xsl:with-param name="photo" select="$info" />
@@ -229,6 +231,11 @@
 	    </xsl:otherwise>
 	  </xsl:choose>
 	</xsl:attribute>
+	<xsl:if test="$img_class and $img_class != ''">
+	  <xsl:attribute name="class">
+	    <xsl:value-of select="$img_class" />
+	  </xsl:attribute>
+	</xsl:if>
 	<xsl:attribute name="src">
 	  <xsl:value-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@source" />
 	</xsl:attribute>
