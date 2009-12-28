@@ -17,7 +17,7 @@
 
     <xsl:text>http://www.youtube.com/v/</xsl:text>
     <xsl:value-of select="$src" />
-    <xsl:if test="$fullscreen='yes'">
+    <xsl:if test="$fullscreen='true'">
       <xsl:text>&amp;fs=1</xsl:text>
     </xsl:if>
   </xsl:template>
@@ -41,11 +41,11 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:youtube">
-    <xsl:variable name="fullscreen">no</xsl:variable>
+    <xsl:variable name="fullscreen">true</xsl:variable>
     <xsl:for-each select="str:tokenize(@options)/token">
       <xsl:choose>
-	<xsl:when test=". = 'fullscreen'">
-	  <xsl:variable name="fullscreen">yes</xsl:variable>
+	<xsl:when test=". = 'nofullscreen'">
+	  <xsl:variable name="fullscreen">false</xsl:variable>
 	</xsl:when>
       </xsl:choose>
     </xsl:for-each>
@@ -66,12 +66,12 @@
 	<xsl:attribute name="value"><xsl:value-of select="$youtube_url" /></xsl:attribute>
       </param>
 
-      <xsl:if test="$fullscreen='yes'">
+      <xsl:if test="$fullscreen='true'">
 	<param name="allowFullScreen" value="true" />
       </xsl:if>
       <embed type="application/x-shockwave-flash">
 	<xsl:attribute name="src"><xsl:value-of select="$youtube_url" /></xsl:attribute>
-	<xsl:if test="$fullscreen='yes'">
+	<xsl:if test="$fullscreen='true'">
 	  <xsl:attribute name="allowfullscreen">true</xsl:attribute>
 	</xsl:if>
 	<xsl:call-template name="fsws.youtube.sizes">
