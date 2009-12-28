@@ -81,4 +81,26 @@
     </object>
 
   </xsl:template>
+
+  <xsl:template match="fsws:staticsite//fsws:youtube-page">
+    <fsws:page>
+      <xsl:copy-of select="@xml:id" />
+
+      <fsws:title>
+	<xsl:value-of select="@title" />
+      </fsws:title>
+
+      <fsws:section>
+	<div class="centering">
+	  <fsws:youtube>
+	    <xsl:copy-of select="@src" />
+	    <xsl:copy-of select="@size" />
+	    <xsl:copy-of select="@options" />
+	  </fsws:youtube>
+	</div>
+      </fsws:section>
+
+      <xsl:apply-templates />
+    </fsws:page>
+  </xsl:template>
 </xsl:stylesheet>
