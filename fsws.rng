@@ -272,13 +272,7 @@
       <element name="youtube-page">
 	<attribute name="xml:id" />
 	<attribute name="title" />
-	<attribute name="src" />
-	<attribute name="size">
-	  <choice>
-	    <value>wide</value>
-	    <value>thumb</value>
-	  </choice>
-	</attribute>
+	<ref name="youtubeAttrs" />
       </element>
     </choice>
   </define>
@@ -323,6 +317,22 @@
     </choice>
   </define>
 
+  <define name="youtubeAttrs">
+    <attribute name="src" />
+    <attribute name="size">
+      <choice>
+	<value>wide</value>
+	<value>thumb</value>
+      </choice>
+    </attribute>
+
+    <optional>
+      <attribute name="options">
+	<data type="string" />
+      </attribute>
+    </optional>
+  </define>
+
   <define name="enhancedHTML">
     <choice>
       <element>
@@ -349,12 +359,7 @@
       </element>
 
       <element name="youtube">
-	<attribute name="src" />
-	<attribute name="size">
-	  <choice>
-	    <value>wide</value>
-	  </choice>
-	</attribute>
+	<ref name="youtubeAttrs" />
       </element>
 
       <!-- FLICKR elements -->
