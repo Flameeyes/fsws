@@ -267,6 +267,19 @@
 	<attribute name="set" />
 	<attribute name="prefixid" />
       </element>
+
+      <!-- Youtube video page -->
+      <element name="youtube-page">
+	<attribute name="xml:id" />
+	<attribute name="title" />
+	<attribute name="src" />
+	<attribute name="size">
+	  <choice>
+	    <value>wide</value>
+	    <value>thumb</value>
+	  </choice>
+	</attribute>
+      </element>
     </choice>
   </define>
 
