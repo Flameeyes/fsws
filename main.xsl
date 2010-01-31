@@ -43,9 +43,13 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:call-template name="fsws.template.subpages">
-      <xsl:with-param name="subpages" select="exslt:node-set($subpages_content)" />
-    </xsl:call-template>
+    <xsl:variable name="subpages" select="exslt:node-set($subpages_content)" />
+
+    <xsl:if test="count($subpages/*) > 0">
+      <xsl:call-template name="fsws.template.subpages">
+	<xsl:with-param name="subpages" select="$subpages" />
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="fsws.perpage">
