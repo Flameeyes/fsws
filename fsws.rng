@@ -388,6 +388,14 @@
       <element name="flickr_set_link">
 	<attribute name="id" />
       </element>
+
+      <element name="phone">
+	<attribute name="number">
+	  <data type="string">
+	    <param name="pattern">\+?([0-9]+[ -\.])?[0-9]+</param>
+	  </data>
+	</attribute>
+      </element>
     </choice>
   </define>
 

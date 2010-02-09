@@ -124,6 +124,24 @@
       <xsl:with-param name="a_class">thumb</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+
+  <xsl:template match="fsws:staticsite-secondpass//fsws:phone">
+    <a>
+      <xsl:attribute name="href">
+	<xsl:text>tel:</xsl:text>
+	<xsl:value-of select="@number">
+	</xsl:value-of>
+      </xsl:attribute>
+      <xsl:choose>
+	<xsl:when test="./*">
+	  <xsl:apply-templates />
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="@number" />
+	</xsl:otherwise>
+      </xsl:choose>
+    </a>
+  </xsl:template>
 </xsl:stylesheet>
 <!--
    Local Variables:
