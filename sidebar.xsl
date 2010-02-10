@@ -42,6 +42,12 @@
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:sidebar/fsws:staticbox">
     <div class="box">
+      <xsl:if test="@xml:id">
+	<xsl:attribute name="id">
+	  <xsl:value-of select="@xml:id" />
+	</xsl:attribute>
+      </xsl:if>
+
       <div class="box_title">
 	<xsl:value-of select="@title" />
       </div>
