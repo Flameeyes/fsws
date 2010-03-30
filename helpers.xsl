@@ -130,7 +130,7 @@
       <xsl:copy-of select="@class" />
       <xsl:attribute name="href">
 	<xsl:text>tel:</xsl:text>
-	<xsl:value-of select="@number">
+	<xsl:value-of select="str:replace(@number, ' ', '')">
 	</xsl:value-of>
       </xsl:attribute>
       <xsl:choose>
