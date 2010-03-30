@@ -127,6 +127,7 @@
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:phone">
     <a>
+      <xsl:copy-of select="@class" />
       <xsl:attribute name="href">
 	<xsl:text>tel:</xsl:text>
 	<xsl:value-of select="@number">
