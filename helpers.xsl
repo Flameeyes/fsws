@@ -8,18 +8,21 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
   <xsl:template name="fsws.copyright_string">
-    <xsl:variable name="current_year" select="date:year()" />
-    © <xsl:value-of select="//fsws:metadata/fsws:copyright/@start" /><xsl:text> </xsl:text>
-    <xsl:if test="//fsws:metadata/fsws:copyright/@start != $current_year">
-      <xsl:text>- </xsl:text>
-      <xsl:value-of select="$current_year" />
-      <xsl:text> </xsl:text>
-    </xsl:if>
-    <xsl:value-of select="//fsws:metadata/fsws:copyright" />
+    <span property="dc:rights">
+      <xsl:variable name="current_year" select="date:year()" />
+      © <xsl:value-of select="//fsws:metadata/fsws:copyright/@start" /><xsl:text> </xsl:text>
+      <xsl:if test="//fsws:metadata/fsws:copyright/@start != $current_year">
+	<xsl:text>- </xsl:text>
+	<xsl:value-of select="$current_year" />
+	<xsl:text> </xsl:text>
+      </xsl:if>
+      <xsl:value-of select="//fsws:metadata/fsws:copyright" />
+    </span>
   </xsl:template>
 
   <xsl:template match="@xml:base"/>
