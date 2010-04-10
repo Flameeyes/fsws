@@ -72,7 +72,7 @@
     </xsl:message>
 
     <exslt:document href="{$fsws.output_filename}" encoding="UTF-8" method="xml" indent="yes"
-		    standalone="yes" doctype-public="-//W3C//DTD XHTML 1.1//EN">
+		    standalone="yes" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN">
 
       <xsl:variable name="mycategory">
 	<xsl:choose>
