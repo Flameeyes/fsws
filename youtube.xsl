@@ -139,6 +139,7 @@
 	    <xsl:copy-of select="@src" />
 	    <xsl:copy-of select="@size" />
 	    <xsl:copy-of select="@options" />
+	    <xsl:copy-of select="./*" />
 	  </fsws:youtube>
 	</div>
       </fsws:section>
