@@ -8,6 +8,8 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+		xmlns:dc="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
@@ -26,16 +28,16 @@
     <xsl:param name="size" />
     <xsl:choose>
       <xsl:when test="$size = 'thumb'">
-	<xsl:attribute name="width">42</xsl:attribute>
-	<xsl:attribute name="height">34</xsl:attribute>
+	<media:width>24</media:width>
+	<media:height>34</media:height>
       </xsl:when>
       <xsl:when test="$size = 'wide'">
-	<xsl:attribute name="width">560</xsl:attribute>
-	<xsl:attribute name="height">340</xsl:attribute>
+	<media:width>560</media:width>
+	<media:height>340</media:height>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:attribute name="width">425</xsl:attribute>
-	<xsl:attribute name="height">344</xsl:attribute>
+	<media:width>425</media:width>
+	<media:height>344</media:height>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -57,10 +59,22 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <object>
+    <xsl:variable name="sizes_">
       <xsl:call-template name="fsws.youtube.sizes">
 	<xsl:with-param name="size" select="@size" />
       </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="sizes" select="exslt:node-set($sizes_)" />
+
+    <object rel="media:video">
+      <xsl:attribute name="width">
+	<xsl:value-of select="$sizes/media:width" />
+      </xsl:attribute>
+      <xsl:attribute name="height">
+	<xsl:value-of select="$sizes/media:height" />
+      </xsl:attribute>
+
+      <xsl:attribute name="resource"><xsl:value-of select="$youtube_url" /></xsl:attribute>
       
       <param name="movie">
 	<xsl:attribute name="value"><xsl:value-of select="$youtube_url" /></xsl:attribute>
@@ -74,10 +88,39 @@
 	<xsl:if test="$fullscreen='true'">
 	  <xsl:attribute name="allowfullscreen">true</xsl:attribute>
 	</xsl:if>
-	<xsl:call-template name="fsws.youtube.sizes">
-	  <xsl:with-param name="size" select="@size" />
-	</xsl:call-template>
+	<xsl:attribute name="width">
+	  <xsl:value-of select="$sizes/media:width" />
+	</xsl:attribute>
+	<xsl:attribute name="height">
+	  <xsl:value-of select="$sizes/media:height" />
+	</xsl:attribute>
       </embed>
+      <span property="media:width">
+	<xsl:attribute name="content">
+	  <xsl:value-of select="$sizes/media:width" />
+	</xsl:attribute>
+      </span>
+      <span property="media:height">
+	<xsl:attribute name="content">
+	  <xsl:value-of select="$sizes/media:height" />
+	</xsl:attribute>
+      </span>
+      <span property="dc:identifier">
+	<xsl:attribute name="content">
+	  <xsl:value-of select="$youtube_url" />
+	</xsl:attribute>
+      </span>
+
+      <xsl:for-each select="(dc:contributor|dc:creator|dc:date|dc:description|dc:license|dc:subject|media:duration|media:player|media:region|media:title|media:type|media:views|media:rating)">
+	<span>
+	  <xsl:attribute name="property">
+	    <xsl:value-of select="name()" />
+	  </xsl:attribute>
+	  <xsl:attribute name="content">
+	    <xsl:value-of select="." />
+	  </xsl:attribute>
+	</span>
+      </xsl:for-each>
     </object>
 
   </xsl:template>
