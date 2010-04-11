@@ -10,6 +10,8 @@
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:flamesite="http://www.flameeyes.eu/flamesite"
 		xmlns:xl="http://www.w3.org/1999/xlink"
+		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+		xmlns:dc="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default
 					 flamesite xl">
