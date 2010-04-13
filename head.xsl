@@ -58,11 +58,6 @@
       <meta name="generator"
 	    content="Flameeyes's Static Website Generator" />
 
-      <!-- Assume that each templates has a /style.css file for the
-	   basic styles -->
-      <link rel="stylesheet" type="text/css" media="screen"
-	    href="/style.css" />
-
       <xsl:apply-templates
 	  select="//fsws:metadata/fsws:keywords|
 		  //fsws:metadata/fsws:stylesheet|
