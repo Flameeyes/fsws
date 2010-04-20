@@ -19,9 +19,23 @@
     </meta>
   </xsl:template>
 
-  <xsl:template match="fsws:staticsite-secondpass//fsws:stylesheet">
+  <xsl:template
+      match="fsws:staticsite-secondpass//fsws:stylesheet[@href]">
     <link rel="stylesheet" type="text/css">
       <xsl:copy-of select="@href" />
+      <xsl:copy-of select="@media" />
+    </link>
+  </xsl:template>
+
+  <xsl:template
+      match="fsws:staticsite-secondpass//fsws:stylesheet[not(@href)]">
+    <exslt:document href="{$fsws.output_directory}/styles/{@id}.css"
+		    method="text" indent="no">
+      <xsl:value-of select="." />
+    </exslt:document>
+
+    <link rel="stylesheet" type="text/css"
+	  href="styles/{@id}.css">
       <xsl:copy-of select="@media" />
     </link>
   </xsl:template>
