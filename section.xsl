@@ -15,33 +15,31 @@
 </xsl:template>
 
 <xsl:template match="fsws:staticsite-secondpass//fsws:section">
-  <div class="post_title">
+  <div class="post">
     <xsl:if test="@xml:id">
       <xsl:attribute name="id">
 	<xsl:value-of select="@xml:id" />
       </xsl:attribute>
     </xsl:if>
 
-    <h3>
-      <xsl:choose>
-	<xsl:when test="fsws:title">
-	  <xsl:value-of select="fsws:title" />
-	</xsl:when>
-	<xsl:when test="@title">
-	  <xsl:value-of select="@title" />
-	</xsl:when>
-      </xsl:choose>
-    </h3>
-  </div>
+    <xsl:choose>
+      <xsl:when test="fsws:title">
+	<h3><xsl:value-of select="fsws:title" /></h3>
+      </xsl:when>
+      <xsl:when test="@title">
+	<h3><xsl:value-of select="@title" /></h3>
+      </xsl:when>
+    </xsl:choose>
 
-  <xsl:if test="@date">
-    <div class="post_date">
-      <xsl:value-of select="@date" />
+    <xsl:if test="@date">
+      <div class="post_date">
+	<xsl:value-of select="@date" />
+      </div>
+    </xsl:if>
+
+    <div class="post_body">
+      <xsl:apply-templates select="./*" />
     </div>
-  </xsl:if>
-
-  <div class="post_body">
-    <xsl:apply-templates select="./*" />
   </div>
 </xsl:template>
 
