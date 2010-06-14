@@ -14,7 +14,7 @@
   <xsl:template match='fsws:staticsite-secondpass//fsws:keywords'>
     <meta name="keywords">
       <xsl:attribute name="content">
-	<xsl:value-of select="//fsws:metadata/fsws:keywords" />
+	<xsl:value-of select="." />
       </xsl:attribute>
     </meta>
   </xsl:template>
