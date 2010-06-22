@@ -34,8 +34,10 @@
       <xsl:value-of select="." />
     </exslt:document>
 
+    <xsl:variable name="baseurl" select="//fsws:metadata/fsws:baseurl" />
+
     <link rel="stylesheet" type="text/css"
-	  href="styles/{@id}.css">
+	  href="{$baseurl}/styles/{@id}.css">
       <xsl:copy-of select="@media" />
     </link>
   </xsl:template>
