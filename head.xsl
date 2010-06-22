@@ -29,7 +29,7 @@
 
   <xsl:template
       match="fsws:staticsite-secondpass//fsws:stylesheet[not(@href)]">
-    <exslt:document href="{$fsws.output_directory}/styles/{@id}.css"
+    <exslt:document href="{$fsws.output_directory}/styles/{@xml:id}.css"
 		    method="text" indent="no">
       <xsl:value-of select="." />
     </exslt:document>
@@ -37,7 +37,7 @@
     <xsl:variable name="baseurl" select="//fsws:metadata/fsws:baseurl" />
 
     <link rel="stylesheet" type="text/css"
-	  href="{$baseurl}/styles/{@id}.css">
+	  href="{$baseurl}/styles/{@xml:id}.css">
       <xsl:copy-of select="@media" />
     </link>
   </xsl:template>
