@@ -71,8 +71,10 @@
       <xsl:value-of select="$fsws.output_filename" />
     </xsl:message>
 
-    <exslt:document href="{$fsws.output_filename}" encoding="UTF-8" method="xml" indent="yes"
-		    standalone="yes" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN">
+    <exslt:document href="{$fsws.output_filename}" encoding="UTF-8"
+		    method="xml" indent="yes" standalone="yes"
+		    doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN"
+		    doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 
       <xsl:variable name="mycategory">
 	<xsl:choose>
