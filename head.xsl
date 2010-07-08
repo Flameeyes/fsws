@@ -77,7 +77,8 @@
       <xsl:apply-templates
 	  select="//fsws:metadata/fsws:keywords|
 		  //fsws:metadata/fsws:stylesheet|
-		  //fsws:metadata/fsws:geolocation" />
+		  //fsws:metadata/fsws:geolocation|
+                  //fsws:metadata/fsws:head-extras/*" />
 
       <title>
 	<xsl:value-of select="//fsws:metadata/fsws:title" />
