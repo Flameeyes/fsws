@@ -50,13 +50,30 @@
 	<xsl:value-of select="@longitude" />
       </xsl:attribute>
     </meta>
+
+    <meta property="og:latitude" content="{@latitude}" />
+    <meta property="og:longitude" content="{@longitude}" />
   </xsl:template>
 
   <xsl:template name="fsws.head">
     <xsl:param name="stylesheet.screen" />
 
+    <xsl:variable name="pageurl_raw">
+      <xsl:value-of select="//fsws:metadata/fsws:baseurl" />
+      <xsl:call-template name="fsws.page.url">
+        <xsl:with-param name="page" select="." />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="pageurl">
+      <xsl:value-of
+          select="str:replace(str:replace($pageurl_raw, '//',
+                  '/'), 'http:/', 'http://')"
+          />
+    </xsl:variable>
+
     <head>
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="content-type" content="text/HTML; charset=UTF-8"/>
       <meta name="author">
 	<xsl:attribute name="content">
 	  <xsl:value-of select="//fsws:metadata/fsws:author" />
@@ -78,7 +95,36 @@
 	  select="//fsws:metadata/fsws:keywords|
 		  //fsws:metadata/fsws:stylesheet|
 		  //fsws:metadata/fsws:geolocation|
+                  //fsws:metadata/fsws:logo|
                   //fsws:metadata/fsws:head-extras/*" />
+
+      <meta property="og:site_name"
+            content="{//fsws:metadata/fsws:title}" />
+      <meta property="og:title" content="{.//fsws:title}" />
+      <meta property="og:url" content="{$pageurl}" />
+
+      <meta property="og:type">
+        <xsl:attribute name="content">
+          <xsl:choose>
+            <xsl:when test="fsws:type">
+              <xsl:value-of select="fsws:type" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>website</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </meta>
+
+      <xsl:choose>
+        <xsl:when test="fsws:image">
+          <meta property="og:image" content="{fsws:image}" />
+        </xsl:when>
+        <xsl:when test="//fsws:metadata/fsws:logo">
+          <meta property="og:image"
+                content="{//fsws:metadata/fsws:logo}" />
+        </xsl:when>
+      </xsl:choose>
 
       <title>
 	<xsl:value-of select="//fsws:metadata/fsws:title" />

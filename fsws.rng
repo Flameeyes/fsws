@@ -68,6 +68,12 @@
 	    </element>
 	  </optional>
 
+          <optional>
+            <element name="logo">
+              <data type="anyURI" />
+            </element>
+          </optional>
+
 	  <element name="sidebar">
 	    <interleave>
 	      <zeroOrMore>
@@ -203,6 +209,13 @@
 	    <data type="boolean" />
 	  </attribute>
 	</optional>
+
+        <optional>
+          <attribute name="type">
+            <!-- should be one of the opengraph types -->
+            <text />
+          </attribute>
+        </optional>
 
 	<choice>
 	  <group>
