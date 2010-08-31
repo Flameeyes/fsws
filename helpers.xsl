@@ -83,7 +83,7 @@
 
     <xsl:variable name="linktext">
       <xsl:choose>
-	<xsl:when test="$text">
+	<xsl:when test="$text != ''">
 	  <xsl:value-of select="$text" />
 	</xsl:when>
 	<xsl:otherwise>
