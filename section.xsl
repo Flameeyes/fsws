@@ -32,6 +32,11 @@
     </xsl:if>
 
     <xsl:choose>
+      <xsl:when test="count(../fsws:section) &lt; 2">
+	<xsl:call-template name="fsws.section.title">
+	  <xsl:with-param name="content" select="../fsws:title" />
+	</xsl:call-template>
+      </xsl:when>
       <xsl:when test="fsws:title">
 	<xsl:call-template name="fsws.section.title">
 	  <xsl:with-param name="content" select="fsws:title" />
