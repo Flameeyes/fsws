@@ -26,6 +26,7 @@
   <xsl:include href="errorpage.xsl" />
   <xsl:include href="wrapper.xsl" />
   <xsl:include href="robots.xsl" />
+  <xsl:include href="licenses.xsl" />
 
   <xsl:strip-space elements="*" />
 
