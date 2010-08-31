@@ -105,8 +105,8 @@
       <meta property="og:type">
         <xsl:attribute name="content">
           <xsl:choose>
-            <xsl:when test="fsws:type">
-              <xsl:value-of select="fsws:type" />
+            <xsl:when test="@type">
+              <xsl:value-of select="@type" />
             </xsl:when>
             <xsl:otherwise>
               <xsl:text>website</xsl:text>
@@ -116,8 +116,8 @@
       </meta>
 
       <xsl:choose>
-        <xsl:when test="fsws:image">
-          <meta property="og:image" content="{fsws:image}" />
+        <xsl:when test="@image">
+          <meta property="og:image" content="{@image}" />
         </xsl:when>
         <xsl:when test="//fsws:metadata/fsws:logo">
           <meta property="og:image"
