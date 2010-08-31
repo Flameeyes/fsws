@@ -13,7 +13,7 @@
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
-<xsl:template match="fsws:staticsite-secondpass//fsws:section/fsws:title">
+<xsl:template match="fsws:staticsite-secondpass//fsws:title">
 </xsl:template>
 
 <xsl:template name="fsws.section.title">
