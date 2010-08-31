@@ -95,7 +95,6 @@
 	  select="//fsws:metadata/fsws:keywords|
 		  //fsws:metadata/fsws:stylesheet|
 		  //fsws:metadata/fsws:geolocation|
-                  //fsws:metadata/fsws:logo|
                   //fsws:metadata/fsws:head-extras/*" />
 
       <meta property="og:site_name"
