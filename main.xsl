@@ -98,7 +98,7 @@
 	<xsl:call-template name="fsws.perpage" />
       </xsl:for-each>
 
-      <html xmlns:og="http://opengraphprotocol.org/schema/"
+      <html xmlns:og="http://ogp.me/ns#"
 	    xmlns:dc="http://purl.org/dc/elements/1.1/"
 	    xmlns:dcterms="http://purl.org/dc/terms/"
 	    xmlns:sioc="http://rdfs.org/sioc/ns#"
