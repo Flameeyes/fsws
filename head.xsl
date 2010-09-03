@@ -12,11 +12,7 @@
 		exclude-result-prefixes="xhtml xi fsws #default">
 
   <xsl:template match='fsws:staticsite-secondpass//fsws:keywords'>
-    <meta name="keywords">
-      <xsl:attribute name="content">
-	<xsl:value-of select="normalize-space(.)" />
-      </xsl:attribute>
-    </meta>
+    <meta name="keywords" content="{normalize-space(.)}" />
   </xsl:template>
 
   <xsl:template
@@ -43,14 +39,7 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:geolocation">
-    <meta name="ICBM">
-      <xsl:attribute name="content">
-	<xsl:value-of select="@latitude" />
-	<xsl:text>, </xsl:text>
-	<xsl:value-of select="@longitude" />
-      </xsl:attribute>
-    </meta>
-
+    <meta name="ICBM" content="{@latitude}, {@longitude}" />
     <meta property="og:latitude" content="{@latitude}" />
     <meta property="og:longitude" content="{@longitude}" />
   </xsl:template>
@@ -74,18 +63,10 @@
 
     <head>
       <meta http-equiv="content-type" content="text/HTML; charset=UTF-8"/>
-      <meta name="author">
-	<xsl:attribute name="content">
-	  <xsl:value-of select="//fsws:metadata/fsws:author" />
-	</xsl:attribute>
-      </meta>
+      <meta name="author" content="{//fsws:metadata/fsws:author}" />
 
       <xsl:if test="fsws:description">
-	<meta name="description">
-	  <xsl:attribute name="content">
-	    <xsl:value-of select="fsws:description" />
-	  </xsl:attribute>
-	</meta>
+	<meta name="description" content="{fsws:description}" />
       </xsl:if>
 
       <meta name="generator"

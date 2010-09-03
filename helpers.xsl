@@ -92,14 +92,11 @@
       </xsl:choose>
     </xsl:variable>
 
-    <a>
+    <a href="{$linktitle}">
       <xsl:attribute name="href">
 	<xsl:call-template name="fsws.page.url">
 	  <xsl:with-param name="page" select="$page" />
 	</xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="title">
-	<xsl:value-of select="$linktitle" />
       </xsl:attribute>
       <xsl:value-of select="$linktext" />
     </a>
@@ -129,13 +126,8 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite-secondpass//fsws:phone">
-    <a>
+    <a href="tel:{str:replace(@number, ' ', '')}">
       <xsl:copy-of select="@class" />
-      <xsl:attribute name="href">
-	<xsl:text>tel:</xsl:text>
-	<xsl:value-of select="str:replace(@number, ' ', '')">
-	</xsl:value-of>
-      </xsl:attribute>
       <xsl:choose>
 	<xsl:when test="./*">
 	  <xsl:apply-templates />

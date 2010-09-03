@@ -11,11 +11,7 @@
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
   <xsl:template match="fsws:notfound">
-    <fsws:page xml:id="errors.404">
-      <xsl:attribute name="xml:lang">
-	<xsl:value-of select="@xml:lang" />
-      </xsl:attribute>
-
+    <fsws:page xml:id="errors.404" xml:lang="{@xml:lang}">
       <fsws:title>
 	<xsl:choose>
 	  <xsl:when test="@xml:lang = 'it'">

@@ -106,21 +106,12 @@
 		</script>
 
 		<div>
-		  <a class="imglink">
-		    <xsl:attribute name="href">
-		      <xsl:text>javascript:gallery_select('</xsl:text>
-		      <xsl:value-of select="@id" />
-		      <xsl:text>');</xsl:text>
-		    </xsl:attribute>
+		  <a class="imglink"
+		     href="javascript:gallery_select('{@id}');"
+		     title="{$photoinfo/title}">
 
-		    <xsl:attribute name="title">
-		      <xsl:value-of select="$photoinfo/title" />
-		    </xsl:attribute>
-
-		    <img>
-		      <xsl:attribute name="title">
-			<xsl:value-of select="$photoinfo/title" />
-		      </xsl:attribute>
+		    <img title="{$photoinfo/title}"
+			 src="{exslt:node-set($sizedata)/*[@label='Square']/@source}">
 		      <xsl:attribute name="alt">
 			<xsl:choose>
 			  <xsl:when test="$photoinfo/description">
@@ -131,24 +122,16 @@
 			  </xsl:otherwise>
 			</xsl:choose>
 		      </xsl:attribute>
-
-		      <xsl:attribute name="src">
-			<xsl:value-of
-			    select="exslt:node-set($sizedata)/*[@label='Square']/@source" />
-		      </xsl:attribute>
 		    </img>
 		  </a>
 		</div>
 
-		<a class="flickrlink">
+		<a class="flickrlink" title="{$photoinfo/title}">
 		  <xsl:attribute name="href">
 		    <xsl:call-template name="fsws.flickr.photo.link">
 		      <xsl:with-param name="photo" select="$photoinfo" />
 		      <xsl:with-param name="set" select="$setdata/@id" />
 		    </xsl:call-template>
-		  </xsl:attribute>
-		  <xsl:attribute name="title">
-		    <xsl:value-of select="$photoinfo/title" />
 		  </xsl:attribute>
 		  <xsl:text>on flickr</xsl:text>
 		</a>

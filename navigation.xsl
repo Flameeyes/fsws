@@ -36,13 +36,7 @@
 	         categories definition, but create an external link
 	         instead -->
 	    <xsl:when test="@xl:href">
-	      <a>
-		<xsl:attribute name="href">
-		  <xsl:value-of select="@xl:href" />
-		</xsl:attribute>
-		<xsl:attribute name="title">
-		  <xsl:value-of select="@xl:title" />
-		</xsl:attribute>
+	      <a href="{@xl:href}" title="{@xl:title}">
 		<xsl:choose>
 		  <xsl:when test="@text">
 		    <xsl:value-of select="@text" />

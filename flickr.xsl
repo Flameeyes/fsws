@@ -190,7 +190,7 @@
       <xsl:value-of select="$info/description" />
     </xsl:variable>
 
-    <a>
+    <a title="{$title}">
       <xsl:if test="$a_class and $a_class != ''">
 	<xsl:attribute name="class">
 	  <xsl:value-of select="$a_class" />
@@ -213,14 +213,9 @@
 	  </xsl:with-param>
 	</xsl:call-template>
       </xsl:attribute>
-      <xsl:attribute name="title">
-	<xsl:value-of select="$title" />
-      </xsl:attribute>
 
-      <img>
-	<xsl:attribute name="title">
-	  <xsl:value-of select="$title" />
-	</xsl:attribute>
+      <img title="{$title}"
+	   src="{exslt:node-set($sizes)/sizes/size[@label=$size]/@source}">
 	<xsl:attribute name="alt">
 	  <xsl:choose>
 	    <xsl:when test="$description">
@@ -236,9 +231,6 @@
 	    <xsl:value-of select="$img_class" />
 	  </xsl:attribute>
 	</xsl:if>
-	<xsl:attribute name="src">
-	  <xsl:value-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@source" />
-	</xsl:attribute>
 	<xsl:if test="$customsize != 'true'">
 	  <xsl:copy-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@width" />
 	  <xsl:copy-of select="exslt:node-set($sizes)/sizes/size[@label=$size]/@height" />
@@ -347,17 +339,8 @@
     </xsl:variable>
 
     <xsl:for-each select="exslt:node-set($fsws.set.cover)/*">
-      <a>
-	<xsl:attribute name="title">
-	  <xsl:value-of select="$info/title" />
-	</xsl:attribute>
-	<xsl:attribute name="href">
-	  <xsl:text>http://www.flickr.com/photos/</xsl:text>
-	  <xsl:value-of select="$info/@owner" />
-	  <xsl:text>/sets/</xsl:text>
-	  <xsl:value-of select="$info/@id" />
-	  <xsl:text>/</xsl:text>
-	</xsl:attribute>
+      <a title="{$info/title}"
+	 href="http://www.flickr.com/photos/{$info/@owner}/sets/{$info/@id}/">
 
 	<xsl:for-each select="./@*">
 	  <xsl:if test="local-name() != 'title' and local-name() != 'href'">
@@ -366,10 +349,7 @@
 	</xsl:for-each>
 
 	<xsl:for-each select="./*">
-	  <img>
-	    <xsl:attribute name="title">
-	      <xsl:value-of select="$info/title" />
-	    </xsl:attribute>
+	  <img title="{$info/title}">
 	    <xsl:attribute name="alt">
 	      <xsl:choose>
 		<xsl:when test="$info/description != ''">

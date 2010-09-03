@@ -90,10 +90,8 @@
 	</xsl:message>
 
 	<xsl:variable name="secondpass">
-	  <fsws:staticsite-secondpass>
-	    <xsl:attribute name="languagecount">
-	      <xsl:value-of select="count(exslt:node-set($sourcedata)//fsws:language)" />
-	    </xsl:attribute>
+	  <fsws:staticsite-secondpass
+	      languagecount="{count(exslt:node-set($sourcedata)//fsws:language)}">
 	    <xsl:apply-templates />
 	  </fsws:staticsite-secondpass>
 	</xsl:variable>

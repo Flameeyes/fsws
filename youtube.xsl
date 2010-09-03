@@ -66,60 +66,29 @@
     </xsl:variable>
     <xsl:variable name="sizes" select="exslt:node-set($sizes_)" />
 
-    <object rel="media:video">
-      <xsl:attribute name="width">
-	<xsl:value-of select="$sizes/media:width" />
-      </xsl:attribute>
-      <xsl:attribute name="height">
-	<xsl:value-of select="$sizes/media:height" />
-      </xsl:attribute>
-
-      <xsl:attribute name="resource"><xsl:value-of select="$youtube_url" /></xsl:attribute>
-      
-      <param name="movie">
-	<xsl:attribute name="value"><xsl:value-of select="$youtube_url" /></xsl:attribute>
-      </param>
+    <object rel="media:video"
+	    width="{$sizes/media:width}"
+	    height="{$sizes/media:height}"
+	    resource="{$youtube_url}">
+      <param name="movie" value="{$youtube_url}" />
 
       <xsl:if test="$fullscreen='true'">
 	<param name="allowFullScreen" value="true" />
       </xsl:if>
-      <embed type="application/x-shockwave-flash">
-	<xsl:attribute name="src"><xsl:value-of select="$youtube_url" /></xsl:attribute>
+      <embed type="application/x-shockwave-flash"
+	     width="{$sizes/media:width}"
+	     height="{$sizes/media:height}"
+	     src="{$youtube_url}">
 	<xsl:if test="$fullscreen='true'">
 	  <xsl:attribute name="allowfullscreen">true</xsl:attribute>
 	</xsl:if>
-	<xsl:attribute name="width">
-	  <xsl:value-of select="$sizes/media:width" />
-	</xsl:attribute>
-	<xsl:attribute name="height">
-	  <xsl:value-of select="$sizes/media:height" />
-	</xsl:attribute>
       </embed>
-      <span property="media:width">
-	<xsl:attribute name="content">
-	  <xsl:value-of select="$sizes/media:width" />
-	</xsl:attribute>
-      </span>
-      <span property="media:height">
-	<xsl:attribute name="content">
-	  <xsl:value-of select="$sizes/media:height" />
-	</xsl:attribute>
-      </span>
-      <span property="dc:identifier">
-	<xsl:attribute name="content">
-	  <xsl:value-of select="$youtube_url" />
-	</xsl:attribute>
-      </span>
+      <span property="media:width" content="{$sizes/media:width}" />
+      <span property="media:height" content="{$sizes/media:height}" />
+      <span property="dc:identifier" content="{$youtube_url}" />
 
       <xsl:for-each select="(dc:contributor|dc:creator|dc:date|dc:description|dc:license|dc:subject|media:duration|media:player|media:region|media:title|media:type|media:views|media:rating)">
-	<span>
-	  <xsl:attribute name="property">
-	    <xsl:value-of select="name()" />
-	  </xsl:attribute>
-	  <xsl:attribute name="content">
-	    <xsl:value-of select="." />
-	  </xsl:attribute>
-	</span>
+	<span property="{name()}" content="{.}" />
       </xsl:for-each>
     </object>
 
