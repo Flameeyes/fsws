@@ -101,7 +101,8 @@
       <html xmlns:og="http://opengraphprotocol.org/schema/"
 	    xmlns:dc="http://purl.org/dc/elements/1.1/"
 	    xmlns:dcterms="http://purl.org/dc/terms/"
-	    xmlns:sioc="http://rdfs.org/sioc/ns#">
+	    xmlns:sioc="http://rdfs.org/sioc/ns#"
+	    xmlns:cc="http://creativecommons.org/ns#">
 	<xsl:call-template name="fsws.head" />
 	<body>
 	  <xsl:call-template name="fsws.template.main" />
