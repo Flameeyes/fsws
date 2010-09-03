@@ -9,7 +9,7 @@
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:sioc="http://rdfs.org/sioc/ns#"
-		xmlns:dc="http://purl.org/dc/terms/"
+		xmlns:dcterms="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
@@ -50,7 +50,7 @@
     </xsl:choose>
 
     <xsl:if test="@date">
-      <div class="post_date" ref="dc:created dc:date">
+      <div class="post_date" ref="dcterms:created dcterms:date">
 	<xsl:value-of select="@date" />
       </div>
     </xsl:if>

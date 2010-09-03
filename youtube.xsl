@@ -9,7 +9,7 @@
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
-		xmlns:dc="http://purl.org/dc/terms/"
+		xmlns:dcterms="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
@@ -85,9 +85,9 @@
       </embed>
       <span property="media:width" content="{$sizes/media:width}" />
       <span property="media:height" content="{$sizes/media:height}" />
-      <span property="dc:identifier" content="{$youtube_url}" />
+      <span property="dcterms:identifier" content="{$youtube_url}" />
 
-      <xsl:for-each select="(dc:contributor|dc:creator|dc:date|dc:description|dc:license|dc:subject|media:duration|media:player|media:region|media:title|media:type|media:views|media:rating)">
+      <xsl:for-each select="(dcterms:contributor|dcterms:creator|dcterms:date|dcterms:description|dcterms:license|dcterms:subject|media:duration|media:player|media:region|media:title|media:type|media:views|media:rating)">
 	<span property="{name()}" content="{.}" />
       </xsl:for-each>
     </object>

@@ -8,8 +8,9 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+		xmlns:xl="http://www.w3.org/1999/xlink"
 		extension-element-prefixes="exslt date str"
-		exclude-result-prefixes="xhtml xi fsws #default">
+		exclude-result-prefixes="xhtml xi xl fsws #default">
 
   <xsl:output omit-xml-declaration="yes" method="text" />
 
@@ -97,7 +98,10 @@
 	<xsl:call-template name="fsws.perpage" />
       </xsl:for-each>
 
-      <html>
+      <html xmlns:og="http://opengraphprotocol.org/schema/"
+	    xmlns:dc="http://purl.org/dc/elements/1.1/"
+	    xmlns:dcterms="http://purl.org/dc/terms/"
+	    xmlns:sioc="http://rdfs.org/sioc/ns#">
 	<xsl:call-template name="fsws.head" />
 	<body>
 	  <xsl:call-template name="fsws.template.main" />
