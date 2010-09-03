@@ -107,6 +107,11 @@
         </xsl:when>
       </xsl:choose>
 
+      <!-- Google's way to fetch the canonical URL
+	   http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html
+      -->
+      <link rel="canonical" href="{$pageurl}" />
+
       <title>
 	<xsl:value-of select="//fsws:metadata/fsws:title" />
 	<xsl:text> — </xsl:text>
