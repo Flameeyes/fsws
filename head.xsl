@@ -8,6 +8,7 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+		xmlns:og="http://opengraphprotocol.org/schema/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
@@ -86,8 +87,8 @@
       <meta property="og:type">
         <xsl:attribute name="content">
           <xsl:choose>
-            <xsl:when test="@type">
-              <xsl:value-of select="@type" />
+            <xsl:when test="@og:type">
+              <xsl:value-of select="@og:type" />
             </xsl:when>
             <xsl:otherwise>
               <xsl:text>website</xsl:text>
