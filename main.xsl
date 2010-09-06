@@ -94,9 +94,7 @@
 	</xsl:choose>
       </xsl:variable>
 
-      <xsl:variable name="myid">
-	<xsl:value-of select="@xml:id" />
-      </xsl:variable>
+      <xsl:variable name="myid" select="@xml:id" />
 
       <xsl:for-each select="fsws:subpages/fsws:subcategory/fsws:page">
 	<xsl:call-template name="fsws.perpage" />
