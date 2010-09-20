@@ -82,8 +82,20 @@
 
       <meta property="og:site_name"
             content="{//fsws:metadata/fsws:title}" />
-      <meta property="og:title" content="{.//fsws:title}" />
       <meta property="og:url" content="{$pageurl}" />
+
+      <meta property="og:title">
+        <xsl:attribute name="content">
+          <xsl:choose>
+            <xsl:when test="@og:title">
+              <xsl:value-of select="@og:title" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select=".//fsws:title" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </meta>
 
       <meta property="og:type">
         <xsl:attribute name="content">
