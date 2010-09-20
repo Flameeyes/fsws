@@ -31,6 +31,14 @@
 	    </element>
 	  </oneOrMore>
 
+          <element name="admins" ns="http://www.facebook.com/2008/fbml">
+            <text /> <!-- this should be validated as a comma-separed list of Facebook IDs -->
+          </element>
+
+          <element name="app_id" ns="http://www.facebook.com/2008/fbml">
+            <text /> <!-- this should be validated as a single Facebook APP ID -->
+          </element>
+
 	  <element name="copyright">
 	    <attribute name="start">
 	      <data type="integer" />

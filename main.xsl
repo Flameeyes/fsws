@@ -121,6 +121,16 @@
             </xsl:variable>
 
             <script type="text/javascript">
+window.fbAsyncInit = function() {
+    FB.init({
+<xsl:if test="//fsws:metadata/fb:app_id">
+      appId  : '<xsl:value-of select="//fsws:metadata/fb:app_id" />',
+</xsl:if>
+      status : true,
+      xfbml  : true
+    });
+  };
+
 (function() {
 var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
 
