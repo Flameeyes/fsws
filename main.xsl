@@ -77,20 +77,20 @@
       <xsl:value-of select="$fsws.output_filename" />
     </xsl:message>
 
-    <xsl:if test=".//fb:*">
-      <xsl:variable name="fblang">
-        <xsl:choose>
-          <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
-          <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
-          <xsl:otherwise>en_US</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-    </xsl:if>
-
     <exslt:document href="{$fsws.output_filename}" encoding="UTF-8"
 		    method="xml" indent="yes" standalone="yes"
 		    doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN"
 		    doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+
+      <xsl:if test=".//fb:*">
+        <xsl:variable name="fblang">
+          <xsl:choose>
+            <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
+            <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
+            <xsl:otherwise>en_US</xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+      </xsl:if>
 
       <xsl:variable name="mycategory">
 	<xsl:choose>
