@@ -11,6 +11,7 @@
 		xmlns:xl="http://www.w3.org/1999/xlink"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
 		xmlns:dcterms="http://purl.org/dc/terms/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi xl fsws #default">
 
@@ -109,6 +110,28 @@
 	<xsl:call-template name="fsws.head" />
 	<body>
 	  <xsl:call-template name="fsws.template.main" />
+
+          <xsl:if test=".//fb:*">
+            <xsl:variable name="fblang">
+              <xsl:choose>
+                <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
+                <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
+                <xsl:otherwise>en_US</xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+
+            <script type="text/javascript">
+(function() {
+var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+s.type = 'text/javascript';
+s.async = true;
+s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of select="@fblang" />/all.js';
+
+t.parentNode.insertBefore(s, t);
+}());
+            </script>
+          </xsl:if>
 	</body>
       </html>
     </exslt:document>
