@@ -9,6 +9,7 @@
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:og="http://opengraphprotocol.org/schema/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 

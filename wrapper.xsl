@@ -12,6 +12,7 @@
 		xmlns:xl="http://www.w3.org/1999/xlink"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
 		xmlns:dcterms="http://purl.org/dc/terms/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default
 					 flamesite xl">
