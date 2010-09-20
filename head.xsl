@@ -98,7 +98,7 @@
       </meta>
 
       <xsl:choose>
-        <xsl:when test="@image">
+        <xsl:when test="@og:image">
           <meta property="og:image" content="{@image}" />
         </xsl:when>
         <xsl:when test="//fsws:metadata/fsws:logo">
