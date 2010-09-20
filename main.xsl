@@ -126,7 +126,7 @@ var s = document.createElement('script'), t = document.getElementsByTagName('scr
 
 s.type = 'text/javascript';
 s.async = true;
-s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of select="@fblang" />/all.js';
+s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of select="$fblang" />/all.js';
 
 t.parentNode.insertBefore(s, t);
 }());
