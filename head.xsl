@@ -107,6 +107,16 @@
         </xsl:when>
       </xsl:choose>
 
+      <xsl:choose>
+        <xsl:when test="@fb:admins">
+          <meta property="fb:admins" content="{@image}" />
+        </xsl:when>
+        <xsl:when test="//fsws:metadata/fb:admins">
+          <meta property="fb:admins"
+                content="{//fsws:metadata/fb:admins}" />
+        </xsl:when>
+      </xsl:choose>
+
       <!-- Google's way to fetch the canonical URL
 	   http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html
       -->
