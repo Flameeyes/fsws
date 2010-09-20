@@ -77,6 +77,16 @@
       <xsl:value-of select="$fsws.output_filename" />
     </xsl:message>
 
+    <xsl:if test=".//fb:*">
+      <xsl:variable name="fblang">
+        <xsl:choose>
+          <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
+          <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
+          <xsl:otherwise>en_US</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+    </xsl:if>
+
     <exslt:document href="{$fsws.output_filename}" encoding="UTF-8"
 		    method="xml" indent="yes" standalone="yes"
 		    doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN"
@@ -109,17 +119,6 @@
 	    xmlns:cc="http://creativecommons.org/ns#">
 	<xsl:call-template name="fsws.head" />
 	<body>
-	  <xsl:call-template name="fsws.template.main" />
-
-          <xsl:if test=".//fb:*">
-            <xsl:variable name="fblang">
-              <xsl:choose>
-                <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
-                <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
-                <xsl:otherwise>en_US</xsl:otherwise>
-              </xsl:choose>
-            </xsl:variable>
-
             <script type="text/javascript">
 window.fbAsyncInit = function() {
     FB.init({
@@ -141,7 +140,7 @@ s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of selec
 t.parentNode.insertBefore(s, t);
 }());
             </script>
-          </xsl:if>
+	  <xsl:call-template name="fsws.template.main" />
 	</body>
       </html>
     </exslt:document>
