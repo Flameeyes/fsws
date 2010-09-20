@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:fb="http://www.facebook.com/2008/fbml"
 	 ns="http://www.flameeyes.eu/fsws/2009"
 	 datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
@@ -31,13 +32,17 @@
 	    </element>
 	  </oneOrMore>
 
-          <element name="admins" ns="http://www.facebook.com/2008/fbml">
-            <text /> <!-- this should be validated as a comma-separed list of Facebook IDs -->
-          </element>
+          <optional>
+            <element name="fb:admins">
+              <text /> <!-- this should be validated as a comma-separed list of Facebook IDs -->
+            </element>
+          </optional>
 
-          <element name="app_id" ns="http://www.facebook.com/2008/fbml">
-            <text /> <!-- this should be validated as a single Facebook APP ID -->
-          </element>
+          <optional>
+            <element name="fb:app_id">
+              <text /> <!-- this should be validated as a single Facebook APP ID -->
+            </element>
+          </optional>
 
 	  <element name="copyright">
 	    <attribute name="start">
