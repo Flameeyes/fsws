@@ -9,6 +9,8 @@
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:xl="http://www.w3.org/1999/xlink"
+		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+		xmlns:dcterms="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi xl fsws #default">
 
@@ -28,6 +30,7 @@
   <xsl:include href="wrapper.xsl" />
   <xsl:include href="robots.xsl" />
   <xsl:include href="licenses.xsl" />
+  <xsl:include href="semantic.xsl" />
 
   <xsl:strip-space elements="*" />
 

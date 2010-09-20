@@ -87,9 +87,7 @@
       <span property="media:height" content="{$sizes/media:height}" />
       <span property="dcterms:identifier" content="{$youtube_url}" />
 
-      <xsl:for-each select="(dcterms:contributor|dcterms:creator|dcterms:date|dcterms:description|dcterms:license|dcterms:subject|media:duration|media:player|media:region|media:title|media:type|media:views|media:rating)">
-	<span property="{name()}" content="{.}" />
-      </xsl:for-each>
+      <xsl:apply-templates select="(dcterms:*|media:*)" />
     </object>
 
   </xsl:template>
