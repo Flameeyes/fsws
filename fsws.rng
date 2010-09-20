@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
          xmlns:fb="http://www.facebook.com/2008/fbml"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
 	 ns="http://www.flameeyes.eu/fsws/2009"
 	 datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
@@ -60,14 +61,34 @@
 
 	  <zeroOrMore>
 	    <element name="stylesheet">
-	      <attribute name="href">
-		<data type="anyURI" />
-	      </attribute>
 	      <optional>
 		<attribute name="media" />
 	      </optional>
+              <choice>
+                <attribute name="href">
+                  <data type="anyURI" />
+                </attribute>
+                <group>
+                  <ref name="xmlID" />
+                  <choice>
+                    <oneOrMore>
+                      <element name="xi:include">
+                        <attribute name="parse">
+                          <value type="string">text</value>
+                        </attribute>
+                        <attribute name="href">
+                          <text />
+                        </attribute>
+                        <empty />
+                      </element>
+                    </oneOrMore>
+                    <text />
+                  </choice>
+                </group>
+              </choice>
 	    </element>
 	  </zeroOrMore>
+
 
 	  <optional>
 	    <element name="geolocation">
