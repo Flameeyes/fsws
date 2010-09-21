@@ -59,6 +59,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="//fsws:staticsite-secondpass//@xml:lang">
+  </xsl:template>
   
   <!-- The idea of this element is to wrap around the staticsite
        provided, and expand what needs to be expanded, like the error
