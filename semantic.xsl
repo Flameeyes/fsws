@@ -27,26 +27,23 @@
       </xsl:choose>
     </xsl:variable>
 
-    <script type="text/javascript">
-window.fbAsyncInit = function() {
-    FB.init({
-<xsl:if test="//fsws:metadata/fb:app_id">
-      appId  : '<xsl:value-of select="//fsws:metadata/fb:app_id" />',
-</xsl:if>
-      status : true,
-      xfbml  : true
-    });
-  };
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+      <xsl:if test="//fsws:metadata/fb:app_id">
+              appId  : '<xsl:value-of select="//fsws:metadata/fb:app_id" />',
+      </xsl:if>
+            xfbml  : true
+          });
+        };
 
-(function() {
-var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-
-s.type = 'text/javascript';
-s.async = true;
-s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of select="$fblang" />/all.js';
-
-t.parentNode.insertBefore(s, t);
-}());
+        (function() {
+          var e = document.createElement('script');
+          e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+          e.async = true;
+          document.getElementById('fb-root').appendChild(e);
+        }());
     </script>
   </xsl:template>
 </xsl:stylesheet>
