@@ -10,10 +10,43 @@
 		xmlns:xi="http://www.w3.org/2001/XInclude"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
 		xmlns:dcterms="http://purl.org/dc/terms/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		extension-element-prefixes="exslt date str"
 		exclude-result-prefixes="xhtml xi fsws #default">
 
   <xsl:template match="dcterms:*|media:*">
     <span property="{name()}" content="{.}" />
+  </xsl:template>
+
+  <xsl:template name="fsws.facebook.sdk">
+    <xsl:variable name="fblang">
+      <xsl:choose>
+        <xsl:when test="@xml:lang = 'en'">en_GB</xsl:when>
+        <xsl:when test="@xml:lang = 'it'">it_IT</xsl:when>
+        <xsl:otherwise>en_US</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <script type="text/javascript">
+window.fbAsyncInit = function() {
+    FB.init({
+<xsl:if test="//fsws:metadata/fb:app_id">
+      appId  : '<xsl:value-of select="//fsws:metadata/fb:app_id" />',
+</xsl:if>
+      status : true,
+      xfbml  : true
+    });
+  };
+
+(function() {
+var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+s.type = 'text/javascript';
+s.async = true;
+s.src = document.location.protocol + '//connect.facebook.net/<xsl:value-of select="$fblang" />/all.js';
+
+t.parentNode.insertBefore(s, t);
+}());
+    </script>
   </xsl:template>
 </xsl:stylesheet>
