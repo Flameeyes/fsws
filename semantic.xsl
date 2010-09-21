@@ -28,7 +28,7 @@
     </xsl:variable>
 
     <div id="fb-root"></div>
-    <script>
+    <script type="text/javascript">
         window.fbAsyncInit = function() {
         /* FSWS-generated websites have proper namespace support; the
         workarounds in the official Facebook SDK will break it
