@@ -49,18 +49,10 @@
   <xsl:template name="fsws.head">
     <xsl:param name="stylesheet.screen" />
 
-    <xsl:variable name="pageurl_raw">
-      <xsl:value-of select="//fsws:metadata/fsws:baseurl" />
-      <xsl:call-template name="fsws.page.url">
+    <xsl:variable name="pageurl">
+      <xsl:call-template name="fsws.page.fullurl">
         <xsl:with-param name="page" select="." />
       </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:variable name="pageurl">
-      <xsl:value-of
-          select="str:replace(str:replace($pageurl_raw, '//',
-                  '/'), 'http:/', 'http://')"
-          />
     </xsl:variable>
 
     <head>

@@ -112,9 +112,6 @@
             >
 	<xsl:call-template name="fsws.head" />
 	<body>
-          <xsl:if test=".//fb:*">
-            <xsl:call-template name="fsws.facebook.sdk" />
-          </xsl:if>
 	  <xsl:call-template name="fsws.template.main" />
 	</body>
       </html>

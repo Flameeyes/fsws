@@ -1,0 +1,10 @@
+iframe.fb_like.standard {
+    min-width: 225px;
+    width: 450px;
+    height: 80px;
+    border-width: 0px;
+}
+
+iframe.fb_like.standard.no_photos {
+    height: 24px;
+}

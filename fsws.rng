@@ -384,6 +384,7 @@
     <choice>
       <element>
 	<choice>
+          <nsName ns="http://www.facebook.com/2008/fbml" />
 	  <nsName ns="http://www.w3.org/1999/xhtml" />
 	  <nsName ns="http://www.flameeyes.eu/flamesite" />
 	</choice>

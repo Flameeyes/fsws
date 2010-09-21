@@ -58,6 +58,22 @@
 	select="str:replace(str:replace($linkid, '.', '/'), '/index', '/')" />
   </xsl:template>
 
+  <xsl:template name="fsws.page.fullurl">
+    <xsl:param name="page" />
+
+    <xsl:variable name="pageurl_raw">
+      <xsl:value-of select="//fsws:metadata/fsws:baseurl" />
+      <xsl:call-template name="fsws.page.url">
+        <xsl:with-param name="page" select="$page" />
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:value-of
+        select="str:replace(str:replace($pageurl_raw, '//',
+                '/'), ':/', '://')"
+        />
+  </xsl:template>
+
   <xsl:template match="fsws:linkto">
     <xsl:call-template name="fsws.linkto">
       <xsl:with-param name="page" select="@linkend" />
