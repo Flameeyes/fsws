@@ -30,6 +30,13 @@
     <div id="fb-root"></div>
     <script>
         window.fbAsyncInit = function() {
+        /* FSWS-generated websites have proper namespace support; the
+        workarounds in the official Facebook SDK will break it
+        badly. This works them around further to work on Firefox and
+        Chrome at leats. */
+
+        FB.XFBML._getDomElements = function(a,b,c) { return a.getElementsByTagNameNS('http://www.facebook.com/2008/fbml', c); }
+
           FB.init({
       <xsl:if test="//fsws:metadata/fb:app_id">
               appId  : '<xsl:value-of select="//fsws:metadata/fb:app_id" />',
