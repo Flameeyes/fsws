@@ -106,7 +106,10 @@
 	    xmlns:dc="http://purl.org/dc/elements/1.1/"
 	    xmlns:dcterms="http://purl.org/dc/terms/"
 	    xmlns:sioc="http://rdfs.org/sioc/ns#"
-	    xmlns:cc="http://creativecommons.org/ns#">
+	    xmlns:cc="http://creativecommons.org/ns#"
+            xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+            xmlns:fb="http://www.facebook.com/2008/fbml"
+            >
 	<xsl:call-template name="fsws.head" />
 	<body>
           <xsl:if test=".//fb:*">
