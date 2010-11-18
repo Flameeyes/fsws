@@ -112,15 +112,15 @@
         </xsl:when>
       </xsl:choose>
 
-      <xsl:choose>
-        <xsl:when test="@fb:admins">
-          <meta property="fb:admins" content="{@fb:admins}" />
-        </xsl:when>
-        <xsl:when test="//fsws:metadata/fb:admins">
-          <meta property="fb:admins"
-                content="{//fsws:metadata/fb:admins}" />
-        </xsl:when>
-      </xsl:choose>
+      <xsl:variable name="fb-admins">
+        <xsl:value-of select="@fb:admins" />
+        <xsl:text>,</xsl:text>
+        <xsl:value-of select="//fsws:metadata/fb:admins" />
+      </xsl:variable>
+
+      <xsl:if test="$fb-admins">
+        <meta property="fb:admins" content="{$fb-admins}" />
+      </xsl:if>
 
       <xsl:choose>
         <xsl:when test="@fb:app_id">
