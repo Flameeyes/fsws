@@ -8,6 +8,8 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:og="http://opengraphprotocol.org/schema/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
 		xmlns:dcterms="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
@@ -95,6 +97,8 @@
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
     <fsws:page>
       <xsl:copy-of select="@xml:id" />
+      <xsl:copy-of select="@og:*" />
+      <xsl:copy-of select="@fb:*" />
 
       <fsws:title>
 	<xsl:value-of select="@title" />
