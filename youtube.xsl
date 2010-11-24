@@ -96,7 +96,16 @@
 
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
     <fsws:page>
-      <xsl:copy-of select="@xml:id|@og:image|@og:type|@fb:admins|@og:title" />
+      <xsl:copy-of select="@xml:id|@og:image|@fb:admins|@og:title" />
+
+      <xsl:choose>
+        <xsl:when test="@og:type">
+          <xsl:copy-of select="@og:type" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:type">video</xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <fsws:title>
 	<xsl:value-of select="@title" />
