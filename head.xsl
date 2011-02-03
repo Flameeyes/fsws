@@ -112,6 +112,10 @@
         </xsl:when>
       </xsl:choose>
 
+      <xsl:if test="@og:video">
+        <meta property="og:video" content="{@og:video}" />
+      </xsl:if>
+
       <xsl:variable name="fb-admins">
         <xsl:value-of select="@fb:admins" />
         <xsl:text>,</xsl:text>

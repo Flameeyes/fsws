@@ -99,6 +99,31 @@
       <xsl:copy-of select="@xml:id|@og:image|@fb:admins|@og:title" />
 
       <xsl:choose>
+        <xsl:when test="@og:image">
+          <xsl:copy-of select="@og:image" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:image">
+            <xsl:text>http://i1.ytimg.com/vi/</xsl:text>
+            <xsl:value-of select="@src" />
+            <xsl:text>/default.jpg</xsl:text>
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <xsl:choose>
+        <xsl:when test="@og:video">
+          <xsl:copy-of select="@og:video" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:video">
+            <xsl:text>http://www.youtube.com/e/</xsl:text>
+            <xsl:value-of select="@src" />
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <xsl:choose>
         <xsl:when test="@og:type">
           <xsl:copy-of select="@og:type" />
         </xsl:when>
