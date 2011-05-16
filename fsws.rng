@@ -302,6 +302,10 @@
 	</optional>
       </element>
 
+      <element name="placeholder">
+        <data type="string" />
+      </element>
+
       <element name="link">
 	<attribute name="title" />
 	<attribute name="href">
