@@ -66,9 +66,13 @@
       <meta name="generator"
 	    content="Flameeyes's Static Website Generator" />
 
+      <!-- ensure that stylesheets are placed before extras, as extras
+           might contain scripts, which should be loaded after styles
+           for best performances -->
+      <xsl:apply-templates select="//fsws:metadata/fsws:stylesheet" />
+
       <xsl:apply-templates
 	  select="//fsws:metadata/fsws:keywords|
-		  //fsws:metadata/fsws:stylesheet|
 		  //fsws:metadata/fsws:geolocation|
                   //fsws:metadata/fsws:head-extras/*" />
 
