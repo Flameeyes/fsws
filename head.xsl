@@ -46,6 +46,14 @@
     <meta property="og:longitude" content="{@longitude}" />
   </xsl:template>
 
+  <xsl:template match="fsws:staticsite-secondpass//fsws:property">
+    <meta property="{@name}">
+      <xsl:attribute name="content">
+        <xsl:value-of select="." />
+      </xsl:attribute>
+    </meta>
+  </xsl:template>
+
   <xsl:template name="fsws.head">
     <xsl:param name="stylesheet.screen" />
 
@@ -143,6 +151,8 @@
                 content="{//fsws:metadata/fb:app_id}" />
         </xsl:when>
       </xsl:choose>
+
+      <xsl:apply-templates select="fsws:property" />
 
       <!-- Google's way to fetch the canonical URL
 	   http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html

@@ -95,6 +95,13 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
+    <xsl:variable name="sizes_">
+      <xsl:call-template name="fsws.youtube.sizes">
+	<xsl:with-param name="size" select="@size" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="sizes" select="exslt:node-set($sizes_)" />
+
     <fsws:page>
       <xsl:copy-of select="@xml:id|@og:image|@fb:admins|@og:title" />
 
@@ -131,6 +138,15 @@
           <xsl:attribute name="og:type">video</xsl:attribute>
         </xsl:otherwise>
       </xsl:choose>
+
+      <fsws:property name="og:video:type">application/x-shockwave-flash</fsws:property>
+
+      <fsws:property name="og:video:width">
+        <xsl:value-of select="$sizes/media:width" />
+      </fsws:property>
+      <fsws:property name="og:video:height">
+        <xsl:value-of select="$sizes/media:height" />
+      </fsws:property>
 
       <fsws:title>
 	<xsl:value-of select="@title" />

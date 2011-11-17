@@ -102,6 +102,16 @@
 	    </element>
 	  </optional>
 
+          <zeroOrMore>
+            <element name="property">
+              <attribute name="name">
+                <text />
+              </attribute>
+
+              <text />
+            </element>
+          </zeroOrMore>
+
           <optional>
             <element name="logo">
               <data type="anyURI" />
