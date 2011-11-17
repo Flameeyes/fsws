@@ -50,7 +50,7 @@
     </xsl:choose>
 
     <xsl:if test="@date">
-      <div class="post_date" ref="dcterms:created dcterms:date">
+      <div class="post_date" rel="dcterms:created dcterms:date">
 	<xsl:value-of select="@date" />
       </div>
     </xsl:if>
