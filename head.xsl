@@ -121,8 +121,12 @@
       </xsl:if>
 
       <xsl:variable name="fb-admins">
-        <xsl:value-of select="@fb:admins" />
-        <xsl:text>,</xsl:text>
+        <xsl:if test="@fb:admins">
+          <xsl:value-of select="@fb:admins" />
+          <xsl:if test="//fsws:metadata/fb:admins">
+            <xsl:text>,</xsl:text>
+          </xsl:if>
+        </xsl:if>
         <xsl:value-of select="//fsws:metadata/fb:admins" />
       </xsl:variable>
 
