@@ -46,6 +46,14 @@
     <meta property="og:longitude" content="{@longitude}" />
   </xsl:template>
 
+  <xsl:template match="fsws:staticsite-secondpass//fsws:property">
+    <meta property="{@name}">
+      <xsl:attribute name="content">
+        <xsl:value-of select="." />
+      </xsl:attribute>
+    </meta>
+  </xsl:template>
+
   <xsl:template name="fsws.head">
     <xsl:param name="stylesheet.screen" />
 
@@ -66,9 +74,13 @@
       <meta name="generator"
 	    content="Flameeyes's Static Website Generator" />
 
+      <!-- ensure that stylesheets are placed before extras, as extras
+           might contain scripts, which should be loaded after styles
+           for best performances -->
+      <xsl:apply-templates select="//fsws:metadata/fsws:stylesheet" />
+
       <xsl:apply-templates
 	  select="//fsws:metadata/fsws:keywords|
-		  //fsws:metadata/fsws:stylesheet|
 		  //fsws:metadata/fsws:geolocation|
                   //fsws:metadata/fsws:head-extras/*" />
 
@@ -112,15 +124,23 @@
         </xsl:when>
       </xsl:choose>
 
-      <xsl:choose>
-        <xsl:when test="@fb:admins">
-          <meta property="fb:admins" content="{@fb:admins}" />
-        </xsl:when>
-        <xsl:when test="//fsws:metadata/fb:admins">
-          <meta property="fb:admins"
-                content="{//fsws:metadata/fb:admins}" />
-        </xsl:when>
-      </xsl:choose>
+      <xsl:if test="@og:video">
+        <meta property="og:video" content="{@og:video}" />
+      </xsl:if>
+
+      <xsl:variable name="fb-admins">
+        <xsl:if test="@fb:admins">
+          <xsl:value-of select="@fb:admins" />
+          <xsl:if test="//fsws:metadata/fb:admins">
+            <xsl:text>,</xsl:text>
+          </xsl:if>
+        </xsl:if>
+        <xsl:value-of select="//fsws:metadata/fb:admins" />
+      </xsl:variable>
+
+      <xsl:if test="$fb-admins">
+        <meta property="fb:admins" content="{$fb-admins}" />
+      </xsl:if>
 
       <xsl:choose>
         <xsl:when test="@fb:app_id">
@@ -131,6 +151,8 @@
                 content="{//fsws:metadata/fb:app_id}" />
         </xsl:when>
       </xsl:choose>
+
+      <xsl:apply-templates select="fsws:property" />
 
       <!-- Google's way to fetch the canonical URL
 	   http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html

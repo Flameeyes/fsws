@@ -8,6 +8,8 @@
 		xmlns:str="http://exslt.org/strings"
 		xmlns:xhtml="http://www.w3.org/1999/xhtml"
 		xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:og="http://opengraphprotocol.org/schema/"
+                xmlns:fb="http://www.facebook.com/2008/fbml"
 		xmlns:media="http://search.yahoo.com/searchmonkey/media/"
 		xmlns:dcterms="http://purl.org/dc/terms/"
 		extension-element-prefixes="exslt date str"
@@ -93,8 +95,58 @@
   </xsl:template>
 
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
+    <xsl:variable name="sizes_">
+      <xsl:call-template name="fsws.youtube.sizes">
+	<xsl:with-param name="size" select="@size" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="sizes" select="exslt:node-set($sizes_)" />
+
     <fsws:page>
-      <xsl:copy-of select="@xml:id" />
+      <xsl:copy-of select="@xml:id|@og:image|@fb:admins|@og:title" />
+
+      <xsl:choose>
+        <xsl:when test="@og:image">
+          <xsl:copy-of select="@og:image" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:image">
+            <xsl:text>http://i1.ytimg.com/vi/</xsl:text>
+            <xsl:value-of select="@src" />
+            <xsl:text>/default.jpg</xsl:text>
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <xsl:choose>
+        <xsl:when test="@og:video">
+          <xsl:copy-of select="@og:video" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:video">
+            <xsl:text>http://www.youtube.com/e/</xsl:text>
+            <xsl:value-of select="@src" />
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <xsl:choose>
+        <xsl:when test="@og:type">
+          <xsl:copy-of select="@og:type" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="og:type">video</xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <fsws:property name="og:video:type">application/x-shockwave-flash</fsws:property>
+
+      <fsws:property name="og:video:width">
+        <xsl:value-of select="$sizes/media:width" />
+      </fsws:property>
+      <fsws:property name="og:video:height">
+        <xsl:value-of select="$sizes/media:height" />
+      </fsws:property>
 
       <fsws:title>
 	<xsl:value-of select="@title" />

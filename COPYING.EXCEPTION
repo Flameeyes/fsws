@@ -1,0 +1,34 @@
+                             FSWS EXCEPTION
+                       Version 1.0, 29 August 2010
+
+ Copyright (C) 2010 Diego Elio Pettenò <http://flameeyes.eu/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+al permission under section 7 of the GNU
+Affero General Public License, version 3 ("AGPLv3"). It applies to a
+given file that bears a notice placed by the copyright holder of the
+file stating that the file is governed by AGPLv3 along with this
+Exception.
+
+The purpose of this Exception is to allow distribution of FSWS's typical
+output under terms of the recipient's choice (including proprietary).
+
+0. Definitions.
+"Covered Code" is the template or schema code of a version of FSWS that
+is a covered work under this License.
+
+"Normally Copied Code" for a version of FSWS means all parts of its
+Covered Code which that version can copy from its code (i.e., not from
+its input file) into its final output, capable of being published as a
+web site or a document.
+
+1. Grant of Additional Permission.
+You have permission to propagate output of FSWS embedding the Normally
+Copied Code, even if such propagation would otherwise violate the terms
+of AGPLv3.
+
+2. No Weakening of FSWS Copyleft.
+The availability of this Exception does not imply any general
+presumption that third-party software is unaffected by the copyleft
+requirements of the license of FSWS.
