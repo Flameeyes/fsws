@@ -11,7 +11,7 @@
 		xmlns:og="http://opengraphprotocol.org/schema/"
                 xmlns:fb="http://www.facebook.com/2008/fbml"
 		extension-element-prefixes="exslt date str"
-		exclude-result-prefixes="xhtml xi fsws #default">
+		exclude-result-prefixes="xhtml xi fsws og #default">
 
   <xsl:template match="fsws:staticsite-secondpass//fb:comments">
     <fb:comments>
@@ -21,13 +21,6 @@
 	<xsl:when test="@href">
 	  <xsl:copy-of select="@href" />
 	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:attribute name="href">
-	    <xsl:call-template name="fsws.page.fullurl">
-              <xsl:with-param name="page" select="." />
-	    </xsl:call-template>
-	  </xsl:attribute>
-	</xsl:otherwise>
       </xsl:choose>
     </fb:comments>
   </xsl:template>
