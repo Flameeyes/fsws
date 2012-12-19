@@ -23,7 +23,9 @@
 	</xsl:when>
 	<xsl:otherwise>
 	  <xsl:attribute name="href">
-	    <xsl:value-of select="$pageurl" />
+	    <xsl:call-template name="fsws.page.fullurl">
+              <xsl:with-param name="page" select="." />
+	    </xsl:call-template>
 	  </xsl:attribute>
 	</xsl:otherwise>
       </xsl:choose>
