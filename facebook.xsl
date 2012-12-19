@@ -21,6 +21,13 @@
 	<xsl:when test="@href">
 	  <xsl:copy-of select="@href" />
 	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:attribute name="href">
+	    <xsl:call-template name="fsws.page.fullurl">
+              <xsl:with-param name="page" select="ancestor::fsws:page" />
+	    </xsl:call-template>
+	  </xsl:attribute>
+	</xsl:otherwise>
       </xsl:choose>
     </fb:comments>
   </xsl:template>
