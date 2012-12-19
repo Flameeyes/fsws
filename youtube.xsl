@@ -163,7 +163,7 @@
 	</div>
       </fsws:section>
 
-      <xsl:apply-templates />
+      <xsl:call-template name="fsws.template.youtube.footer" />
     </fsws:page>
   </xsl:template>
 </xsl:stylesheet>
