@@ -24,7 +24,7 @@
 	<xsl:otherwise>
 	  <xsl:attribute name="href">
 	    <xsl:call-template name="fsws.page.fullurl">
-              <xsl:with-param name="page" select="ancestor::fsws:page" />
+              <xsl:with-param name="page" select="ancestor::fsws:page[last()]" />
 	    </xsl:call-template>
 	  </xsl:attribute>
 	</xsl:otherwise>
