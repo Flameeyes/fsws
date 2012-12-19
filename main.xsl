@@ -32,6 +32,7 @@
   <xsl:include href="robots.xsl" />
   <xsl:include href="licenses.xsl" />
   <xsl:include href="semantic.xsl" />
+  <xsl:include href="facebook.xsl" />
 
   <xsl:strip-space elements="*" />
 
