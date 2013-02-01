@@ -21,6 +21,7 @@
 
     <xsl:text>http://www.youtube.com/embed/</xsl:text>
     <xsl:value-of select="$src" />
+    <xsl:text>?</xsl:text>
     <xsl:if test="$fullscreen='true'">
       <xsl:text>&amp;fs=1</xsl:text>
     </xsl:if>
