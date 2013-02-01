@@ -19,7 +19,7 @@
     <xsl:param name="src" />
     <xsl:param name="fullscreen" />
 
-    <xsl:text>http://www.youtube.com/v/</xsl:text>
+    <xsl:text>http://www.youtube.com/embed/</xsl:text>
     <xsl:value-of select="$src" />
     <xsl:if test="$fullscreen='true'">
       <xsl:text>&amp;fs=1</xsl:text>
@@ -68,30 +68,11 @@
     </xsl:variable>
     <xsl:variable name="sizes" select="exslt:node-set($sizes_)" />
 
-    <object rel="media:video"
+    <iframe class="youtube-player" type="text/html"
+	    frameborder="0" rel="media:video"
 	    width="{$sizes/media:width}"
 	    height="{$sizes/media:height}"
-	    resource="{$youtube_url}">
-      <param name="movie" value="{$youtube_url}" />
-
-      <xsl:if test="$fullscreen='true'">
-	<param name="allowFullScreen" value="true" />
-      </xsl:if>
-      <embed type="application/x-shockwave-flash"
-	     width="{$sizes/media:width}"
-	     height="{$sizes/media:height}"
-	     src="{$youtube_url}">
-	<xsl:if test="$fullscreen='true'">
-	  <xsl:attribute name="allowfullscreen">true</xsl:attribute>
-	</xsl:if>
-      </embed>
-      <span property="media:width" content="{$sizes/media:width}" />
-      <span property="media:height" content="{$sizes/media:height}" />
-      <span property="dcterms:identifier" content="{$youtube_url}" />
-
-      <xsl:apply-templates select="(dcterms:*|media:*)" />
-    </object>
-
+	    src="{$youtube_url}" />
   </xsl:template>
 
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
