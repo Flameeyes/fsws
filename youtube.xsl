@@ -74,7 +74,13 @@
 	    frameborder="0" rel="media:video"
 	    width="{$sizes/media:width}"
 	    height="{$sizes/media:height}"
-	    src="{$youtube_url}" />
+	    src="{$youtube_url}">
+      <xsl:if test="$fullscreen">
+	<xsl:attribute name="allowfullscreen">allowfullscreen</xsl:attribute>
+	<xsl:attribute name="mozallowfullscreen">mozallowfullscreen</xsl:attribute>
+	<xsl:attribute name="webkitallowfullscreen">webkitallowfullscreen</xsl:attribute>
+      </xsl:if>
+    </iframe>
   </xsl:template>
 
   <xsl:template match="fsws:staticsite//fsws:youtube-page">
