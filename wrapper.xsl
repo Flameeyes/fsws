@@ -134,7 +134,7 @@
 	    <loc>
 	      <xsl:value-of
 		  select="str:replace(str:replace($fsws.fullurl, '//',
-			  '/'), ':/', ://')"
+			  '/'), ':/', '://')"
 			    />
 	    </loc>
 	    <lastmod><xsl:value-of select="date:date()" /></lastmod>
