@@ -21,7 +21,7 @@
     <xsl:param name="extraparams" />
 
     <xsl:variable name="fsws.flickr.call.rest.uri">
-      <xsl:text>http://api.flickr.com/services/rest/?method=</xsl:text>
+      <xsl:text>https://api.flickr.com/services/rest/?method=</xsl:text>
       <xsl:value-of select="$method" />
       <xsl:text>&amp;api_key=</xsl:text>
       <xsl:value-of select="$fsws.flickr.apikey" />
