@@ -33,21 +33,14 @@ implementation.
 License
 -------
 
-The project is released under the GNU AGPL version 3, plus an
-exception I'll call “FSWS Exception” and is derived from the Autoconf
-exception written by the Free Software Foundation.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-You can find the license and exception distributed in the repository
-as `COPYING` and `COPYING.EXCEPTION`.
+  http://www.apache.org/licenses/LICENSE-2.0
 
-As a quick reference, you can make your own websites with FSWS, but if
-you change the content of this repository to do so, you should make it
-available to whomever can see your website.
-
-Without going into all the possible legalities of it, if you do change
-this repository, simply add a link at the bottom of the page “Powered
-by FSWS” linking back to _your_ forked repository with the modified
-templates.
-
-You need not to publish your XML data or the main template
-provided. You also don't have to publish your extension templates.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
